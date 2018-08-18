@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Promotion = require('../models/promotion');
-
+const checkAuth = require('../middleware/check-auth');
 
 router.post('', (req, res, next) => {
     const body = req.body;
@@ -30,7 +30,7 @@ router.get('', (req, res, next) => {
         });
 })
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', checkAuth, (req, res, next) => {
     Promotion.deleteOne({_id: req.params.id}).then(result => {
         console.log(result);
         res.status(200).json({message: 'Promotion is deleted'})
