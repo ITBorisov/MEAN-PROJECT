@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -9,30 +12,40 @@ import {
   MatButtonModule,
   MatToolbarModule } from '@angular/material';
 
-import { AdsService } from './components/ads/ads.service';
+import { PromotionsService } from './core/services/promotions.service';
 
 import { AppComponent } from './app.component';
-import { AdCreateComponent } from './components/ads/ad-create/ad-create.component';
+import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
-import { AdListComponent } from './components/ads/ad-list/ad-list.component';
+import { AddPromotionComponent } from './components/promotions/add-promotion/add-promotion.component';
+import { ListPromotionComponent } from './components/promotions/list-promotion/list-promotion.component';
+import { LoginComponent } from './components/authentication/login/login.component';
+import { RegisterComponent } from './components/authentication/register/register.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdCreateComponent,
+    AddPromotionComponent,
     HeaderComponent,
-    AdListComponent
+    ListPromotionComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatInputModule,
     MatCardModule,
     MatButtonModule
   ],
-  providers: [AdsService],
+  providers: [PromotionsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

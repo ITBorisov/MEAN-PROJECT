@@ -6,7 +6,7 @@ const config = require('./config/config').get(process.env.NODE_ENV);
 const app = express();
 
 const userRoutes = require('./routes/user');
-const adsRoutes = require('./routes/ads');
+const promotionRoutes = require('./routes/promotions');
 
 
 mongoose
@@ -36,7 +36,7 @@ app.use((req, res, next) => {
 
 
 app.use('/api/user', userRoutes);
-app.use('/api/ads', adsRoutes);
+app.use('/api/promotions', promotionRoutes);
 
 
 const port = process.env.PORT || 3001;

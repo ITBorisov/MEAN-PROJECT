@@ -1,0 +1,11 @@
+.group{
+    display: flex;
+}
+
+.card{
+    width: 33%;
+}
+
+.card-img-top{
+    width: 200px;
+}

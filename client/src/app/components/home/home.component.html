@@ -1,0 +1,11 @@
+<div class="card-deck">
+  <div class="card" *ngFor="let item of promotions">
+    <img class="card-img-top" src="../../../assets/promo.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{item.title}}</h5>
+      <p class="card-text">{{item.content}}</p>
+      <button class="btn btn-primary">EDIT</button>
+      <button (click)="delete(item._id)" class="btn btn-primary">DELETE</button>
+    </div>
+  </div>
+</div>
