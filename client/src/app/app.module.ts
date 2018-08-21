@@ -12,7 +12,7 @@ import {
   MatButtonModule,
   MatToolbarModule } from '@angular/material';
 
-import { PromotionsService } from './core/services/promotions.service';
+import { PromotionsService } from './components/promotions/promotions.service';
 import { AuthInterceptor } from './core/interseptors/auth-interceptors';
 
 import { AppComponent } from './app.component';
@@ -22,6 +22,8 @@ import { AddPromotionComponent } from './components/promotions/add-promotion/add
 import { ListPromotionComponent } from './components/promotions/list-promotion/list-promotion.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
+import { ProfileComponent } from './components/authentication/profile/profile.component';
+import { DetailsPromotionComponent } from './components/promotions/details-promotion/details-promotion.component';
 
 
 
@@ -33,7 +35,9 @@ import { RegisterComponent } from './components/authentication/register/register
     ListPromotionComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent,
+    DetailsPromotionComponent
   ],
   imports: [
     BrowserModule,

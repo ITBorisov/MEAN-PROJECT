@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const User = require('../models/user');
 const bcrypt = require("bcrypt");
+const checkAuth = require('../middleware/check-auth');
 
 router.post('/register', (req, res, next) => {
   bcrypt.hash(req.body.password, 10).then(hash =>{
@@ -50,14 +51,15 @@ router.post('/login', (req, res, next) => {
       }
            
       const token = jwt.sign(
-        { username: fetchedUser.username, userId: fetchedUser._id },
+        { username: fetchedUser.username, userId: fetchedUser._id, isAdmin: fetchedUser.isAdmin },
         'secret',
         { expiresIn: "1h" }
       );
       res.status(200).json({
         token: token,
         expiresIn: 3600,
-        userId: fetchedUser._id
+        userId: fetchedUser._id,
+        isAdmin: fetchedUser.isAdmin
       });
     })
     .catch(err => {
@@ -65,6 +67,22 @@ router.post('/login', (req, res, next) => {
         message: "Invalid authentication credentials!"
       });
     });
+})
+
+
+router.get('/profile', checkAuth, (req, res) => {
+  User.findOne({_id: req.userData.userId})
+    .then(result => {
+      res.status(200).json({
+        username: result.username,
+        isAdmin: result.isAdmin
+      });
+    })
+    .catch(err => {
+      return res.status(404).json({
+        message: "Not found"
+      });
+    })
 })
 
 

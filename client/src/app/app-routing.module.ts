@@ -5,18 +5,25 @@ import { HomeComponent } from './components/home/home.component';
 import { AddPromotionComponent } from './components/promotions/add-promotion/add-promotion.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
-
+import { AuthGuard } from './components/authentication/auth.guard';
+import { ProfileComponent } from './components/authentication/profile/profile.component';
+import { ListPromotionComponent } from './components/promotions/list-promotion/list-promotion.component';
+import { DetailsPromotionComponent } from './components/promotions/details-promotion/details-promotion.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
-    { path: 'add-promotion', component: AddPromotionComponent},
+    { path: 'promotions', component: ListPromotionComponent},
+    { path: 'promotion-details/:id', component: DetailsPromotionComponent},
+    { path: 'add-promotion', component: AddPromotionComponent, canActivate: [AuthGuard]},
     { path: 'login', component: LoginComponent},
-    { path: 'register', component: RegisterComponent}
+    { path: 'register', component: RegisterComponent},
+    { path: 'profile', component: ProfileComponent}
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [AuthGuard]
 })
 export class AppRoutingModule {}

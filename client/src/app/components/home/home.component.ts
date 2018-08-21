@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PromotionsService } from '../../core/services/promotions.service';
+import { PromotionsService } from '../promotions/promotions.service';
+import { AuthService } from '../authentication/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -8,11 +10,24 @@ import { PromotionsService } from '../../core/services/promotions.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  private isAuth = false;
+  private authListenerSubs: Subscription;
   promotions;
-  constructor(private promotionService: PromotionsService) { }
+  userId;
+
+  constructor(
+    private promotionService: PromotionsService,
+    private authService: AuthService) { }
 
   ngOnInit() {
-    this.promotionService.getPromotion().subscribe(data => {
+    this.isAuth = this.authService.getIsAuth();
+    this.authListenerSubs = this.authService.getAuthState().subscribe(result => {
+      this.isAuth = result;
+    });
+    this.userId = this.authService.getUserId();
+
+
+    this.promotionService.getAllPromotions().subscribe(data => {
       this.promotions = data.promotions;
       console.log(this.promotions);
     });

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { PromotionsService } from '../../../core/services/promotions.service';
+import { PromotionsService } from '../promotions.service';
 
 @Component({
   selector: 'app-add-promotion',
@@ -14,10 +14,11 @@ export class AddPromotionComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      title: new FormControl(null, {
+      title: new FormControl('', {
         validators: [Validators.required, Validators.minLength(3)]
       }),
-      content: new FormControl(null, { validators: [Validators.required] })
+      content: new FormControl('', { validators: [Validators.required] }),
+      image: new FormControl('', { validators: [Validators.required]})
     });
   }
 
@@ -27,10 +28,7 @@ export class AddPromotionComponent implements OnInit {
       return;
     }
 
-    this.promotionService.addPromotion(
-      this.form.value.title,
-      this.form.value.content
-    );
+    this.promotionService.addPromotion(this.form.value);
   }
 
 }

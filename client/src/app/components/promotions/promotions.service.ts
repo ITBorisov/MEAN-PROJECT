@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Promotion } from '../../components/promotions/promotion.model';
+import { Promotion } from './promotion.model';
+import { Router } from '@angular/router';
 const BACKEND_URL = 'http://localhost:3001/api';
 
 @Injectable({
@@ -10,23 +11,35 @@ const BACKEND_URL = 'http://localhost:3001/api';
 export class PromotionsService {
 
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
-  addPromotion(title: string, content: string) {
-    const promotion = { title: title, content: content};
+  addPromotion(data) {
+    const promotion = data;
 
     this.http.post<{message: string}>(BACKEND_URL + '/promotions', promotion).subscribe((response) => {
       console.log(response.message);
+      this.router.navigate(['/']);
     });
   }
 
-  getPromotion() {
+  getAllPromotions() {
     return this.http.get<{message: string, promotions: {}}>(BACKEND_URL + '/promotions');
+  }
+
+  getPromotion(id: string) {
+    return this.http.get<{promotion: {}}>(BACKEND_URL + '/promotions/' + id);
   }
 
   deletePromotion(itemId) {
     this.http.delete(BACKEND_URL + '/promotions/' + itemId).subscribe(result => {
       console.log(result);
     });
+  }
+
+  getMyPromotions() {
+    return this.http.get<{ promotions: {}}>(BACKEND_URL + '/promotions/mypromotion');
   }
 }

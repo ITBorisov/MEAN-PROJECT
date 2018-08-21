@@ -25,6 +25,6 @@ import {
     }
 
     private getAuthtoken(): string {
-      return sessionStorage.getItem('token');
+      return localStorage.getItem('token');
     }
   }
