@@ -92,7 +92,8 @@ export class AuthService {
   }
 
   getUserId() {
-    return this.userId;
+    // return this.userId;
+    return localStorage.getItem('userId');
   }
 
   private saveAuthData(token: string, userId: string) {

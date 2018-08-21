@@ -46,9 +46,9 @@ router.get('/mypromotion', checkAuth, (req, res) => {
     console.log(req.userData.userId);
     console.log('dwdwaaaa');
     Promotion.find({creator: req.userData.userId})
-        .then(result => {
+        .then(promotions => {
             res.status(200).json({
-                result
+                promotions: promotions
             })
         })
 } )
@@ -65,17 +65,50 @@ router.get('/:id', (req, res) => {
         })
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', checkAuth, (req, res) => {
 
+  const promotion = new Promotion({
+    _id: req.params.id,
+    title: req.body.title,
+    content: req.body.content,
+    creator: req.userData.userId
+  });
+  Promotion.updateOne({ _id: req.params.id, creator: req.userData.userId }, promotion)
+    .then(result => {
+      if (result.n > 0) {
+        res.status(200).json({ message: "Update successful!" });
+      } else {
+        res.status(401).json({ message: "Not authorized!" });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: "Couldn't udpate promotion!"
+      });
+    });
 })
 
 
 
 router.delete('/:id', checkAuth, (req, res, next) => {
-    Promotion.deleteOne({_id: req.params.id}).then(result => {
-        console.log(result);
-        res.status(200).json({message: 'Promotion is deleted'})
+    // Promotion.deleteOne({_id: req.params.id}).then(result => {
+    //     console.log(result);
+    //     res.status(200).json({message: 'Promotion is deleted'})
+    // })
+    Promotion.deleteOne({ _id: req.params.id, creator: req.userData.userId })
+    .then(result => {
+      console.log(result);
+      if (result.n > 0) {
+        res.status(200).json({ message: "Deletion successful!" });
+      } else {
+        res.status(401).json({ message: "Not authorized!" });
+      }
     })
+    .catch(error => {
+      res.status(500).json({
+        message: "Deleting posts failed!"
+      });
+    });
 })
 
 

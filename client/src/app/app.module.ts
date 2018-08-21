@@ -24,6 +24,7 @@ import { LoginComponent } from './components/authentication/login/login.componen
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { ProfileComponent } from './components/authentication/profile/profile.component';
 import { DetailsPromotionComponent } from './components/promotions/details-promotion/details-promotion.component';
+import { EditPromotionComponent } from './components/promotions/edit-promotion/edit-promotion.component';
 
 
 
@@ -37,7 +38,8 @@ import { DetailsPromotionComponent } from './components/promotions/details-promo
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    DetailsPromotionComponent
+    DetailsPromotionComponent,
+    EditPromotionComponent
   ],
   imports: [
     BrowserModule,

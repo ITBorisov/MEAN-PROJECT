@@ -1,3 +1,24 @@
 <p *ngIf="user">
   {{user.username}}
 </p>
+
+
+<div class="row">
+    <div class="col-md-4" *ngFor="let item of promotions">
+      <div class="card mb-4 box-shadow">
+        <img class="card-img-top" src="{{item.image}}" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">{{item.title}}</p>
+          <p class="card-text">{{item.content}}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button  [routerLink]="['/promotion-details', item._id]" type="button" class="btn btn-sm btn-outline-secondary" >View</button>
+              <button *ngIf="isAuth && item.creator === userId" (click)="delete(item._id)" type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+              <button *ngIf="isAuth && item.creator === userId" [routerLink]="['/promotion-edit', item._id]" type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+            </div>
+            <small class="text-muted">9 mins</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

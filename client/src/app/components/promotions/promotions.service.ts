@@ -33,6 +33,13 @@ export class PromotionsService {
     return this.http.get<{promotion: {}}>(BACKEND_URL + '/promotions/' + id);
   }
 
+  editPromotion(data, id) {
+    this.http.put(BACKEND_URL + '/promotions/' + id, data)
+    .subscribe(response => {
+      console.log(response);
+    });
+  }
+
   deletePromotion(itemId) {
     this.http.delete(BACKEND_URL + '/promotions/' + itemId).subscribe(result => {
       console.log(result);

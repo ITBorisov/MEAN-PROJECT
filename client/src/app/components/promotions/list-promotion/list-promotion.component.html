@@ -37,7 +37,6 @@
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
               <button  [routerLink]="['/promotion-details', item._id]" type="button" class="btn btn-sm btn-outline-secondary" >View</button>
-              <button *ngIf="isAuth && item.creator === userId" (click)="delete(item._id)" type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
             </div>
             <small class="text-muted">9 mins</small>
           </div>
