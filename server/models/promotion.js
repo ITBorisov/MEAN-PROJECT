@@ -10,10 +10,10 @@ const promotionSchema = mongoose.Schema({
   likedBy: {type: Array},
   dislike: {type: Number, default: 0},
   dislikedBy: {type: Array},
-  comments: [
-    {
+  comments: [{
       comment: { type: String},
-      commentator: { type: String}
+      commentator: { type: String},
+      createdAt: {type: Date, default: Date.now()}
     }
   ]
 

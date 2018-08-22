@@ -6,15 +6,14 @@
     </nav>
     <a *ngIf="!isAuth" [routerLink]="['/login']" class="btn btn-outline-primary" href="#">Login</a>
     <a *ngIf="!isAuth" [routerLink]="['/register']" class="btn btn-outline-primary" href="#">Register</a>
-    <div *ngIf="isAuth" class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+      <button *ngIf="isAuth" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
          My stuff
       </button>
-      <div class="dropdown-menu">
+      <div *ngIf="isAuth" class="dropdown-menu">
         <a [routerLink]="['/profile']" class="dropdown-item">Profile</a>
         <a [routerLink]="['/add-promotion']" class="dropdown-item" >Add promotion</a>
         <a (click)="logout()" class="dropdown-item">Logout</a>
       </div>
-    </div>
+    
   </div>
 

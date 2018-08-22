@@ -1,4 +1,41 @@
-<div *ngIf="promotion">
-  <p>{{promotion.title}}</p>
-  <p>{{promotion.content}}</p>
-</div>
+<h1>PROMOTION DETAILS</h1>
+<div class="row" *ngIf="promotion">
+    <div class="col-md-4">
+      <div class="card mb-4 box-shadow">
+        <img class="card-img-top" src="{{promotion.image}}" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">{{promotion.title}}</p>
+          <p class="card-text">{{promotion.content}}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+            </div>
+            <small class="text-muted">{{promotion.createdAt | date}}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<form [formGroup]="commentForm" (submit)="addComment()">
+  <div class="form-group">
+    <label for="comment">Comment</label>
+    <input formControlName="comment" type="text" class="form-control" aria-describedby="emailHelp" placeholder="comment">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+<div *ngIf="promotion" class="my-3 p-3 bg-white rounded shadow-sm">
+  <h6 class="border-bottom border-gray pb-2 mb-0">Comments</h6>
+  <div class="media text-muted pt-3" *ngFor="let item of promotion.comments">
+    <img data-src="../../../../assets/man-156584_960_720.png" alt="" class="mr-2 rounded">
+    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+      <div class="d-flex justify-content-between align-items-center w-100">
+        <strong class="text-gray-dark">Username: {{item.commentator}}</strong>
+        <a>{{item.createdAt| date:'medium' }}</a>
+      </div>
+      <span class="d-block">{{item.comment}}</span>
+    </div>
+  </div>

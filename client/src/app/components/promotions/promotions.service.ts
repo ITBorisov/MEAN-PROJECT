@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 
 import { Promotion } from './promotion.model';
 import { Router } from '@angular/router';
+
+import { ToastrService } from 'ngx-toastr';
+
 const BACKEND_URL = 'http://localhost:3001/api';
 
 @Injectable({
@@ -13,14 +16,15 @@ export class PromotionsService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   addPromotion(data) {
     const promotion = data;
 
     this.http.post<{message: string}>(BACKEND_URL + '/promotions', promotion).subscribe((response) => {
-      console.log(response.message);
+      this.toastr.success('Нова промоция');
       this.router.navigate(['/']);
     });
   }
@@ -36,17 +40,29 @@ export class PromotionsService {
   editPromotion(data, id) {
     this.http.put(BACKEND_URL + '/promotions/' + id, data)
     .subscribe(response => {
-      console.log(response);
+      this.toastr.success('Успешен едит');
+      this.router.navigate(['/profile']);
     });
   }
 
   deletePromotion(itemId) {
     this.http.delete(BACKEND_URL + '/promotions/' + itemId).subscribe(result => {
-      console.log(result);
+      this.toastr.success('Успешно изтрихте');
     });
   }
 
   getMyPromotions() {
     return this.http.get<{ promotions: {}}>(BACKEND_URL + '/promotions/mypromotion');
+  }
+
+  postNewComment(id, data) {
+    const commentData = {
+      id: id,
+      comment: data.comment
+    };
+
+  this.http.post(BACKEND_URL + '/promotions/comment', commentData).subscribe(result => {
+    console.log(result);
+  });
   }
 }

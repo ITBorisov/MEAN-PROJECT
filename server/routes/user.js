@@ -10,6 +10,9 @@ router.post('/register', (req, res, next) => {
   bcrypt.hash(req.body.password, 10).then(hash =>{
     const user = new User({
       username: req.body.username,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
       password: hash
     })
   
@@ -53,7 +56,7 @@ router.post('/login', (req, res, next) => {
       const token = jwt.sign(
         { username: fetchedUser.username, userId: fetchedUser._id, isAdmin: fetchedUser.isAdmin },
         'secret',
-        { expiresIn: "1h" }
+        { expiresIn: "48h" }
       );
       res.status(200).json({
         token: token,
@@ -75,6 +78,9 @@ router.get('/profile', checkAuth, (req, res) => {
     .then(result => {
       res.status(200).json({
         username: result.username,
+        firstName: result.firstName,
+        lastName: result.lastName,
+        email: result.email,
         isAdmin: result.isAdmin
       });
     })

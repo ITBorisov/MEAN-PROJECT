@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 
 const BACKEND_URL = 'http://localhost:3001/api';
+import { ToastrService } from 'ngx-toastr';
+
 import { AuthData } from './auth-data.model';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
@@ -17,15 +19,18 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router) { }
+    private router: Router,
+    private toastr: ToastrService
+  ) { }
 
-  createUser(username: string, password: string) {
-    const authData: AuthData = {
-      username: username,
-      password: password
-    };
-    this.http.post<{message: string}>(BACKEND_URL + '/user/register', authData).subscribe(response => {
+  createUser(data) {
+    // const authData: AuthData = {
+    //   username: username,
+    //   password: password
+    // };
+    this.http.post<{message: string}>(BACKEND_URL + '/user/register', data).subscribe(response => {
       console.log(response.message);
+      this.toastr.success('Успешна регистрация');
       this.router.navigate(['/login']);
     });
   }
@@ -44,6 +49,7 @@ export class AuthService {
         this.userId = response.userId;
         this.authStatus.next(true);
         this.saveAuthData(token, this.userId);
+        this.toastr.success('Успешен вход');
         this.router.navigate(['/']);
       }
 
@@ -60,6 +66,7 @@ export class AuthService {
     this.isAuthenticated = false;
     this.authStatus.next(false);
     this.clearAuthData();
+    this.toastr.success('Успешен изход');
     this.router.navigate(['/']);
   }
 
