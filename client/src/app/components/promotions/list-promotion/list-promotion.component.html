@@ -3,7 +3,7 @@
     <h1 class="jumbotron-heading">PROMOTIONS</h1>
     <p class="lead text-muted">Inform yourself about the latest promotions from our users</p>
     <div class="form-group">
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Search">
+        <input [(ngModel)]="search" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Search">
         <button class="btn btn-outline-primary my-2 my-sm-0" type="search">Search</button>
       </div>
   </div>
@@ -11,23 +11,22 @@
 
 <div class="btn-container">
   <div class="btn-group">
-    <button type="button" class="btn btn-primary">Likes</button>
-    <button type="button" class="btn btn-primary">Comments</button>
+    
     <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
           <span data-feather="calendar"></span>
-        Date
+        SortBy
       </button>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Ascedenting</a>
-        <a class="dropdown-item" href="#">Descedenting</a>
+        <a (click)="sortByLikes()" class="dropdown-item" >Likes</a>
+        <a (click)="sortByComments()" class="dropdown-item" >Comments</a>
       </div>
     </div>
   </div>
 </div>
 <hr>
 <div class="row">
-  <div class="col-md-4" *ngFor="let item of promotions">
+  <div class="col-md-4" *ngFor="let item of promotions | search:search">
     <div class="card mb-4 box-shadow">
       <img class="card-img-top" src="{{item.image}}" alt="Card image cap">
       <div class="card-body">

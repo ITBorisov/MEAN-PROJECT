@@ -33,6 +33,8 @@ import { EditPromotionComponent } from './components/promotions/edit-promotion/e
 import { UserProfileComponent } from './components/authentication/user-profile/user-profile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
+import { SearchPipe } from './components/promotions/search.pipe';
+
 
 
 @NgModule({
@@ -48,7 +50,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     DetailsPromotionComponent,
     EditPromotionComponent,
     UserProfileComponent,
-    DashboardComponent
+    DashboardComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
