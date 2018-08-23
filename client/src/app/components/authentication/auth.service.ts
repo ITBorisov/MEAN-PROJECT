@@ -24,10 +24,6 @@ export class AuthService {
   ) { }
 
   createUser(data) {
-    // const authData: AuthData = {
-    //   username: username,
-    //   password: password
-    // };
     this.http.post<{message: string}>(BACKEND_URL + '/user/register', data).subscribe(response => {
       console.log(response.message);
       this.toastr.success('Успешна регистрация');
@@ -56,8 +52,16 @@ export class AuthService {
     });
   }
 
+  getUsers() {
+    return this.http.get<{message: string, users: {}}>(BACKEND_URL + '/user/all');
+  }
+
   getProfile() {
     return this.http.get<{profile: {}}>(BACKEND_URL + '/user/profile');
+  }
+
+  getPublicUserProfile(id) {
+    return this.http.get(BACKEND_URL + '/user/public-profile/' + id);
   }
 
   logout() {

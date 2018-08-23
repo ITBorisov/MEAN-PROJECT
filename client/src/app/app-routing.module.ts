@@ -10,13 +10,17 @@ import { ProfileComponent } from './components/authentication/profile/profile.co
 import { ListPromotionComponent } from './components/promotions/list-promotion/list-promotion.component';
 import { DetailsPromotionComponent } from './components/promotions/details-promotion/details-promotion.component';
 import { EditPromotionComponent } from './components/promotions/edit-promotion/edit-promotion.component';
+import { UserProfileComponent } from './components/authentication/user-profile/user-profile.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
+    { path: 'dashboard', component: DashboardComponent},
     { path: 'promotions', component: ListPromotionComponent},
     { path: 'promotion-edit/:id', component: EditPromotionComponent},
     { path: 'promotion-details/:id', component: DetailsPromotionComponent},
+    { path: 'user-profile/:id', component: UserProfileComponent},
     { path: 'add-promotion', component: AddPromotionComponent, canActivate: [AuthGuard]},
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},

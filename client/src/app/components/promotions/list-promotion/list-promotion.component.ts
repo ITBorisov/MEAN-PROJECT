@@ -22,5 +22,9 @@ export class ListPromotionComponent implements OnInit {
     });
   }
 
+  like(id) {
+    this.promotionService.like(id);
+  }
+
 
 }

@@ -73,6 +73,22 @@ router.post('/login', (req, res, next) => {
 })
 
 
+router.get('/all', checkAuth, (req, res) => {
+  if(req.userData.isAdmin === false){
+    res.status(403).json({
+      success: false,
+      message: 'Only admins can access this route'
+    })
+  }
+  User.find({})
+        .then(users => {
+            res.status(200).json({
+                message: 'Users is fetched successfully',
+                users: users
+            });
+        });
+})
+
 router.get('/profile', checkAuth, (req, res) => {
   User.findOne({_id: req.userData.userId})
     .then(result => {
@@ -82,6 +98,26 @@ router.get('/profile', checkAuth, (req, res) => {
         lastName: result.lastName,
         email: result.email,
         isAdmin: result.isAdmin
+      });
+    })
+    .catch(err => {
+      return res.status(404).json({
+        message: "Not found"
+      });
+    })
+})
+
+router.get('/public-profile/:id', (req, res) => {
+
+  console.log(req.params.id);
+
+  User.findOne({username: req.params.id})
+    .then(result => {
+      res.status(200).json({
+        username: result.username,
+        firstName: result.firstName,
+        lastName: result.lastName,
+        email: result.email,
       });
     })
     .catch(err => {

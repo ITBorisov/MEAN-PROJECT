@@ -65,4 +65,13 @@ export class PromotionsService {
     console.log(result);
   });
   }
+
+  like(id) {
+    const likeData = {
+      id: id
+    };
+    this.http.put(BACKEND_URL + '/promotions/like', likeData).subscribe(result => {
+      console.log(result);
+    });
+  }
 }

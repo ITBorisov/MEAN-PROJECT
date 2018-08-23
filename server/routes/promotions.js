@@ -17,7 +17,9 @@ router.post('', checkAuth, (req, res, next) => {
         title: body.title,
         content: body.content,
         image: body.image,
-        creator: req.userData.userId
+        price: body.price,
+        creator: req.userData.userId,
+        creatorName: req.userData.username
     });
 
     promotion.save().then(promotions => {
@@ -69,33 +71,76 @@ router.post('/comment', checkAuth, (req, res) => {
 
                         if (!user) {
                             res.json({ success: false, message: 'User not found.' })
-                        }else {
+                        } else {
                             promotion.comments.push({
                                 comment: req.body.comment,
                                 commentator: user.username
                             })
-    
                             promotion.save()
-                            .then(result => {
-                                res.json({
-                                    success: true, 
-                                    message: 'New comment is added',
+                                .then(result => {
+                                    res.json({
+                                        success: true,
+                                        message: 'New comment is added',
+                                    })
                                 })
-                            })
-                            .catch(err => {
-                                res.json({
-                                    success: false, 
-                                    message: 'Comment is not added',
+                                .catch(err => {
+                                    res.json({
+                                        success: false,
+                                        message: 'Comment is not added',
+                                    })
                                 })
-                            })
-                            
-                        }
-                        
 
+                        }
                     })
             }
         })
 
+})
+
+router.put('/like', checkAuth, (req, res) => {
+    console.log('like');
+    if (!req.body.id) {
+        res.json({ success: false, message: 'No id provided' })
+    }
+
+    Promotion.findOne({ _id: req.body.id })
+        .then(promotion => {
+            if (!promotion) {
+                return res.json({ success: false, message: 'Invalid promotion id' })
+            } else {
+                User.findOne({ _id: req.userData.userId })
+                    .then(user => {
+                        if (!user) {
+                            res.json({ success: false, message: 'User not found.' })
+                        } else {
+
+                            if (promotion.likedBy.includes(user.username)) {
+                                res.json({ success: false, message: 'You already liked this promotion.' })
+                            } else {
+                                promotion.likes++;
+                                promotion.likedBy.push(user.username);
+                                promotion.save()
+                                    .then(result => {
+                                        res.json({
+                                            success: true,
+                                            message: 'You liked this promotion',
+                                        })
+                                    })
+                                    .catch(err => {
+                                        res.json({
+                                            success: false,
+                                            message: 'You cant like this promotion',
+                                        })
+                                    })
+                            }
+
+
+
+
+                        }
+                    })
+            }
+        })
 })
 
 router.get('/:id', (req, res) => {
@@ -116,7 +161,9 @@ router.put('/:id', checkAuth, (req, res) => {
         _id: req.params.id,
         title: req.body.title,
         content: req.body.content,
-        creator: req.userData.userId
+        price: req.body.price,
+        creator: req.userData.userId,
+        creatorName: req.userData.username
     });
     Promotion.updateOne({ _id: req.params.id, creator: req.userData.userId }, promotion)
         .then(result => {

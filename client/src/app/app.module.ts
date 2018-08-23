@@ -30,6 +30,8 @@ import { RegisterComponent } from './components/authentication/register/register
 import { ProfileComponent } from './components/authentication/profile/profile.component';
 import { DetailsPromotionComponent } from './components/promotions/details-promotion/details-promotion.component';
 import { EditPromotionComponent } from './components/promotions/edit-promotion/edit-promotion.component';
+import { UserProfileComponent } from './components/authentication/user-profile/user-profile.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 
@@ -44,7 +46,9 @@ import { EditPromotionComponent } from './components/promotions/edit-promotion/e
     RegisterComponent,
     ProfileComponent,
     DetailsPromotionComponent,
-    EditPromotionComponent
+    EditPromotionComponent,
+    UserProfileComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

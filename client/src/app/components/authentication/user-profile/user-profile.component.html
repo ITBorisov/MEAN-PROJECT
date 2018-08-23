@@ -1,0 +1,33 @@
+<div class="row justify-content-md-center" *ngIf="user">
+
+    <div class="col-lg-6">
+      <div class="card">
+        <h4 class="card-header bg-dark text-white">{{user.username}}
+        <div class="float-right small">
+          <a class="btn btn-raised btn-danger" href="#" title="Ver perfil de Miguel92" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+              <i class="fa fa-user-circle" aria-hidden="true"></i>
+            </a>
+            <a class="btn btn-raised btn-danger" href="#" title="Enviar mensaje">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+            </a>
+            <a class="btn btn-raised btn-danger" href="#" title="Seguir usuario">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+            </a>
+        </div>
+        </h4>
+        <div class="card-body">
+            <div class="image float-left user-l">
+              <img src="http://31.media.tumblr.com/tumblr_lw2lhqjrel1qfmi03o9_r1_500.gif" class="img-thumbnail" alt="avatar"/>
+            </div>
+            <p class="card-text">Name: {{user.firstName}}</p>
+            <p class="card-text">Last Name: {{user.lastName}}</p>
+            <p class="card-text">Email: {{user.email}}</p>
+            <div class="float-right">
+              <button class="btn btn-sm btn-outline-danger">Message</button>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+              
+  </div>

@@ -26,7 +26,8 @@ export class EditPromotionComponent implements OnInit {
       this.form.setValue({
         title: this.promotion.title,
         content: this.promotion.content,
-        image: this.promotion.image
+        image: this.promotion.image,
+        price: this.promotion.price
       });
     });
 
@@ -35,7 +36,8 @@ export class EditPromotionComponent implements OnInit {
         validators: [Validators.required, Validators.minLength(3)]
       }),
       content: new FormControl('', { validators: [Validators.required] }),
-      image: new FormControl('', { validators: [Validators.required]})
+      image: new FormControl('', { validators: [Validators.required]}),
+      price: new FormControl('', { validators: [Validators.required]})
     });
   }
 

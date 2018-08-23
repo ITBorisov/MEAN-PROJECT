@@ -18,7 +18,8 @@ export class AddPromotionComponent implements OnInit {
         validators: [Validators.required, Validators.minLength(3)]
       }),
       content: new FormControl('', { validators: [Validators.required] }),
-      image: new FormControl('', { validators: [Validators.required]})
+      image: new FormControl('', { validators: [Validators.required]}),
+      price: new FormControl('', { validators: [Validators.required]})
     });
   }
 
