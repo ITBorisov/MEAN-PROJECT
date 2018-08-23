@@ -78,9 +78,9 @@ router.post('/comment', checkAuth, (req, res) => {
                             })
                             promotion.save()
                                 .then(result => {
-                                    res.json({
+                                    res.status(201).json({
                                         success: true,
-                                        message: 'New comment is added',
+                                        message: 'Your comment is added',
                                     })
                                 })
                                 .catch(err => {
@@ -187,14 +187,14 @@ router.delete('/:id', checkAuth, (req, res, next) => {
         .then(result => {
             console.log(result);
             if (result.n > 0) {
-                res.status(200).json({ message: "Deletion successful!" });
+                res.status(200).json({ success: true, message: "Deletion successful!" });
             } else {
-                res.status(401).json({ message: "Not authorized!" });
+                res.status(401).json({ success: false, message: "Not authorized!" });
             }
         })
         .catch(error => {
             res.status(500).json({
-                message: "Deleting posts failed!"
+                success: false, message: "Deleting posts failed!"
             });
         });
 })

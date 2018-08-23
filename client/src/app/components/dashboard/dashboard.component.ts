@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../authentication/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,20 +9,43 @@ import { AuthService } from '../authentication/auth.service';
 })
 export class DashboardComponent implements OnInit {
   users;
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit() {
+    this.fetchUsers();
+  }
+
+  deleteUser(id) {
+    this.authService.deleteUser(id).subscribe(response => {
+      if (response.success) {
+        this.fetchUsers();
+        this.toastr.success(response.message);
+      } else {
+        this.toastr.error(response.message);
+      }
+    });
+  }
+
+  makeAdmin(id) {
+    this.authService.makeAdmin(id).subscribe(response => {
+      if (response.success) {
+        this.fetchUsers();
+        this.toastr.success(response.message);
+      } else {
+        this.toastr.error(response.message);
+      }
+    });
+  }
+
+
+  fetchUsers() {
     this.authService.getUsers().subscribe(response => {
       this.users = response.users;
       console.log(this.users);
     });
-  }
-
-  deleteUser(id) {
-
-  }
-  makeAdmin(id) {
-
   }
 
 }

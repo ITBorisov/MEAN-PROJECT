@@ -25,7 +25,7 @@ export class PromotionsService {
 
     this.http.post<{message: string}>(BACKEND_URL + '/promotions', promotion).subscribe((response) => {
       this.toastr.success('Нова промоция');
-      this.router.navigate(['/']);
+      this.router.navigate(['/profile']);
     });
   }
 
@@ -46,9 +46,7 @@ export class PromotionsService {
   }
 
   deletePromotion(itemId) {
-    this.http.delete(BACKEND_URL + '/promotions/' + itemId).subscribe(result => {
-      this.toastr.success('Успешно изтрихте');
-    });
+    return this.http.delete<{success: boolean, message: string}>(BACKEND_URL + '/promotions/' + itemId);
   }
 
   getMyPromotions() {
@@ -61,17 +59,13 @@ export class PromotionsService {
       comment: data.comment
     };
 
-  this.http.post(BACKEND_URL + '/promotions/comment', commentData).subscribe(result => {
-    console.log(result);
-  });
+    return this.http.post<{success: boolean, message: string}>(BACKEND_URL + '/promotions/comment', commentData);
   }
 
   like(id) {
     const likeData = {
       id: id
     };
-    this.http.put(BACKEND_URL + '/promotions/like', likeData).subscribe(result => {
-      console.log(result);
-    });
+    return this.http.put<{success: boolean, message: string}>(BACKEND_URL + '/promotions/like', likeData);
   }
 }

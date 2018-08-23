@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PromotionsService } from '../promotions.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-details-promotion',
@@ -14,7 +15,8 @@ export class DetailsPromotionComponent implements OnInit {
   promotionId;
   constructor(
     private route: ActivatedRoute,
-    private promotionService: PromotionsService
+    private promotionService: PromotionsService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -23,10 +25,11 @@ export class DetailsPromotionComponent implements OnInit {
     });
 
     this.promotionId = this.route.snapshot.paramMap.get('id');
-    this.promotionService.getPromotion(this.promotionId).subscribe(response => {
-      this.promotion = response.promotion;
-      console.log(this.promotion);
-    });
+    this.fetchPromotion(this.promotionId);
+    // this.promotionService.getPromotion(this.promotionId).subscribe(response => {
+    //   this.promotion = response.promotion;
+    //   console.log(this.promotion);
+    // });
   }
 
 
@@ -34,9 +37,23 @@ export class DetailsPromotionComponent implements OnInit {
     if (this.commentForm.invalid) {
       return;
     }
-    console.log('aaadwd');
-    this.promotionService.postNewComment(this.promotionId, this.commentForm.value);
+
+    this.promotionService.postNewComment(this.promotionId, this.commentForm.value).subscribe(response => {
+      if (response.success) {
+        this.fetchPromotion(this.promotionId);
+        this.toastr.success(response.message);
+      } else {
+        this.toastr.success(response.message);
+      }
+    });
 
   }
+
+ fetchPromotion(id: string) {
+  this.promotionService.getPromotion(this.promotionId).subscribe(response => {
+    this.promotion = response.promotion;
+    console.log(this.promotion);
+  });
+ }
 
 }

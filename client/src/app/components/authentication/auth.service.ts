@@ -56,6 +56,14 @@ export class AuthService {
     return this.http.get<{message: string, users: {}}>(BACKEND_URL + '/user/all');
   }
 
+  deleteUser(id) {
+    return this.http.delete<{success: boolean, message: string}>(BACKEND_URL + '/user/delete/' + id);
+  }
+
+  makeAdmin(id) {
+    return this.http.put<{success: boolean, message: string}>(BACKEND_URL + '/user/makeAdmin/' + id, {});
+  }
+
   getProfile() {
     return this.http.get<{profile: {}}>(BACKEND_URL + '/user/profile');
   }

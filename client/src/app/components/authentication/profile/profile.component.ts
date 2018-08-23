@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { PromotionsService } from '../../promotions/promotions.service';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +18,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private promotionService: PromotionsService
+    private promotionService: PromotionsService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -32,13 +34,24 @@ export class ProfileComponent implements OnInit {
       console.log(response);
     });
 
-    this.promotionService.getMyPromotions().subscribe(response => {
-      this.promotions = response.promotions;
-    });
+    this.fetchPromotions();
   }
 
   delete(itemId) {
-    this.promotionService.deletePromotion(itemId);
+    this.promotionService.deletePromotion(itemId).subscribe(response => {
+      if (response.success) {
+        this.fetchPromotions();
+        this.toastr.success(response.message);
+      } else {
+        this.toastr.error(response.message);
+      }
+    });
+  }
+
+  fetchPromotions() {
+    this.promotionService.getMyPromotions().subscribe(response => {
+      this.promotions = response.promotions;
+    });
   }
 
 }

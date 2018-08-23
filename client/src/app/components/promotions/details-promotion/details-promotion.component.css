@@ -84,7 +84,17 @@
   .col-md-4{
       margin: 0 auto !important;
   }
-
+  .col-md-8{
+    padding-left: 0px !important;
+  }
   h1{
       text-align: center;
+  }
+
+  .btn{
+    margin-left: 15px !important;
+  }
+
+  .container-box{
+    color: lightgray;
   }
