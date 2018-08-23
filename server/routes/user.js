@@ -19,12 +19,12 @@ router.post('/register', (req, res, next) => {
     user.save()
       .then(result => {
         res.status(201).json({
-          message: 'User is register'
+         success: true,  message: 'User is register'
         })
       })
       .catch(err => {
         res.status(500).json({
-          message: "Invalid authentication credentials!"
+         success: false, message: "Invalid authentication credentials!"
         });
       })
   })

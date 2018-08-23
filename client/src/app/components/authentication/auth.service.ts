@@ -16,6 +16,7 @@ export class AuthService {
   private isAuthenticated = false;
   private authStatus = new Subject<boolean>();
   private userId: string;
+  private isAdmin: string;
 
   constructor(
     private http: HttpClient,
@@ -24,10 +25,11 @@ export class AuthService {
   ) { }
 
   createUser(data) {
-    this.http.post<{message: string}>(BACKEND_URL + '/user/register', data).subscribe(response => {
-      console.log(response.message);
-      this.toastr.success('Успешна регистрация');
+    this.http.post<{success: boolean, message: string}>(BACKEND_URL + '/user/register', data).subscribe(response => {
+      this.toastr.success(response.message);
       this.router.navigate(['/login']);
+    }, error => {
+      this.toastr.error(error.error.message);
     });
   }
 
@@ -37,14 +39,15 @@ export class AuthService {
       password: password
     };
 
-    this.http.post<{ token: string, userId: string, isAdmin: boolean }>(BACKEND_URL + '/user/login', authData).subscribe(response => {
+    this.http.post<{ token: string, userId: string, isAdmin: string }>(BACKEND_URL + '/user/login', authData).subscribe(response => {
       const token = response.token;
       this.token = token;
       if (token) {
         this.isAuthenticated = true;
         this.userId = response.userId;
+        this.isAdmin = response.isAdmin;
         this.authStatus.next(true);
-        this.saveAuthData(token, this.userId);
+        this.saveAuthData(token, this.userId, this.isAdmin);
         this.toastr.success('Успешен вход');
         this.router.navigate(['/']);
       }
@@ -75,6 +78,7 @@ export class AuthService {
   logout() {
     this.token = null;
     this.userId = null;
+    this.isAdmin = null;
     this.isAuthenticated = false;
     this.authStatus.next(false);
     this.clearAuthData();
@@ -82,7 +86,7 @@ export class AuthService {
     this.router.navigate(['/']);
   }
 
-  isAdmin(): boolean {
+  userRole(): boolean {
     return localStorage.getItem('isAdmin') === 'true';
   }
 
@@ -115,9 +119,10 @@ export class AuthService {
     return localStorage.getItem('userId');
   }
 
-  private saveAuthData(token: string, userId: string) {
+  private saveAuthData(token: string, userId: string, isAdmin: string) {
     localStorage.setItem('token', token);
     localStorage.setItem('userId', userId);
+    localStorage.setItem('isAdmin', isAdmin);
   }
 
   private clearAuthData() {
@@ -128,12 +133,14 @@ export class AuthService {
   private getAuthData() {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
+    const isAdmin = localStorage.getItem('isAdmin');
     if (!token) {
       return;
     }
     return {
       token: token,
-      userId: userId
+      userId: userId,
+      isAdmin: isAdmin
     };
   }
 }
