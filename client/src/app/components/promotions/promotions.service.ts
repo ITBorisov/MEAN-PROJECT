@@ -40,7 +40,7 @@ export class PromotionsService {
   editPromotion(data, id) {
     this.http.put(BACKEND_URL + '/promotions/' + id, data)
     .subscribe(response => {
-      this.toastr.success('Успешен едит');
+      this.toastr.success('Successful edit');
       this.router.navigate(['/profile']);
     });
   }

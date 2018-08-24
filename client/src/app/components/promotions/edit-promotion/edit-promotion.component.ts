@@ -35,7 +35,7 @@ export class EditPromotionComponent implements OnInit {
       title: new FormControl('', {
         validators: [Validators.required, Validators.minLength(3)]
       }),
-      content: new FormControl('', { validators: [Validators.required] }),
+      content: new FormControl('', { validators: [Validators.required, Validators.minLength(20)] }),
       image: new FormControl('', { validators: [Validators.required]}),
       price: new FormControl('', { validators: [Validators.required]})
     });

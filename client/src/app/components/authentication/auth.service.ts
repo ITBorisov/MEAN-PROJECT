@@ -54,7 +54,7 @@ export class AuthService {
 
         this.authStatus.next(true);
         this.saveAuthData(token, this.userId, this.isAdmin);
-        this.toastr.success('Успешен вход');
+        this.toastr.success('Successful sign in');
         this.router.navigate(['/']);
       }
 
@@ -89,7 +89,7 @@ export class AuthService {
     this.authStatus.next(false);
     this.adminStatus.next(false);
     this.clearAuthData();
-    this.toastr.success('Успешен изход');
+    this.toastr.success('Successful sign out');
     this.router.navigate(['/']);
   }
 

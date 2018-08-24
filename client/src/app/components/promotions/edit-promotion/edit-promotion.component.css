@@ -1,0 +1,17 @@
+.alert {
+    color: red;
+    font-size: .9em;
+    animation: 1s alertAnim forwards;
+    padding: 0px;
+}
+
+@keyframes alertAnim {
+    from {
+        opacity:0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity:1;
+        transform: translateY(0);
+    }
+}

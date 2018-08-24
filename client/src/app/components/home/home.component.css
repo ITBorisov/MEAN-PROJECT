@@ -4,6 +4,12 @@
     justify-content: flex-end;
   }
   
+
+.jumbotron {
+    background: url("../../../assets/promo-tag2.png") no-repeat center center;
+    
+    background-size: contain;
+}
   .btn-group{
   }
   
@@ -22,4 +28,5 @@
   
   .box-shadow:hover{
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    cursor: pointer;
   }

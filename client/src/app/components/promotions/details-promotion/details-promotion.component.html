@@ -30,7 +30,7 @@
 
 
 
-<div *ngIf="promotion" class="my-3 p-3 bg-primary rounded shadow-sm">
+<div *ngIf="promotion" class="my-3 p-3 bg-danger rounded shadow-sm">
   <h6 class="border-bottom border-gray pb-2 mb-0 text-white">Comments - {{promotion.comments.length}}</h6>
   <div class="media text-muted pt-3" *ngFor="let item of promotion.comments">
     <img data-src="../../../../assets/man-156584_960_720.png" alt="" class="mr-2 rounded">
@@ -43,7 +43,7 @@
     </div>
   </div>
 
-  <form [formGroup]="commentForm" (submit)="addComment()">
+  <form *ngIf="isAuth" [formGroup]="commentForm" (submit)="addComment()">
     <div class="col-md-8">
       <div class="form-group">
         <label for="comment" class="text-white">Comment:</label>
@@ -51,5 +51,5 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-white">Submit</button>
+    <button type="submit" class="btn btn-sm btn-outline-secondary text-white">Submit</button>
   </form>
