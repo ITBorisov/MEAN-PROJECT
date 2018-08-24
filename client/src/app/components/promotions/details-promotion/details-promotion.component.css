@@ -94,7 +94,9 @@
   .btn{
     margin-left: 15px !important;
   }
-
+  p{
+    line-height: 1 !important;
+  }
   .container-box{
     color: lightgray;
   }

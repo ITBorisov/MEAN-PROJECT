@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { PromotionsService } from '../promotions.service';
-import { SearchPipe } from '../search.pipe';
 
 @Component({
   selector: 'app-list-promotion',

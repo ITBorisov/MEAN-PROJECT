@@ -32,6 +32,9 @@
 .btn-group{
 }
 
+p{
+  line-height: 1 !important;
+}
 .btn-outline-primary{
   margin-top: 10px !important;
 }

@@ -15,7 +15,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AdminGuard } from './core/guards/admin.guard';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/promotions', pathMatch: 'full' },
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard, AdminGuard]},
     { path: 'promotions', component: ListPromotionComponent},

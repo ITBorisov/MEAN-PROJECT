@@ -3,14 +3,16 @@
   <div class="col-md-4">
     <div class="card mb-4 box-shadow">
       <img class="card-img-top" src="{{promotion.image}}" alt="Card image cap">
+      <hr>
       <div class="card-body">
-        <p class="card-text">Title: {{promotion.title}}</p>
-        <p class="card-text">Content: {{promotion.content}}</p>
-        <p>Price: {{promotion.price}}</p>
-        <p>Author: {{promotion.creatorName}}</p>
+        <p class="card-text text-center">{{promotion.title}}</p>
+        <p class="card-text">{{promotion.content}}</p>
+        <p class="card-text font-weight-bold">Price: {{promotion.price}}</p>
+        Author: <a class="card-text font-weight-bold" [routerLink]="['/user-profile', promotion.creatorName]">{{promotion.creatorName}}</a>
+        <hr>
         <div class="d-flex justify-content-between align-items-center">
             <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
                     Likes:{{promotion.likes}}
                 </button>
                 <div class="dropdown-menu" >

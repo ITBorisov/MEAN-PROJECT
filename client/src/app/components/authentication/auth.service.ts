@@ -15,6 +15,7 @@ export class AuthService {
   private token: string;
   private isAuthenticated = false;
   private authStatus = new Subject<boolean>();
+  private adminStatus = new Subject<boolean>();
   private userId: string;
   private isAdmin: string;
 
@@ -46,6 +47,11 @@ export class AuthService {
         this.isAuthenticated = true;
         this.userId = response.userId;
         this.isAdmin = response.isAdmin;
+
+        if (this.isAdmin) {
+          this.adminStatus.next(true);
+        }
+
         this.authStatus.next(true);
         this.saveAuthData(token, this.userId, this.isAdmin);
         this.toastr.success('Успешен вход');
@@ -81,12 +87,13 @@ export class AuthService {
     this.isAdmin = null;
     this.isAuthenticated = false;
     this.authStatus.next(false);
+    this.adminStatus.next(false);
     this.clearAuthData();
     this.toastr.success('Успешен изход');
     this.router.navigate(['/']);
   }
 
-  userRole(): boolean {
+  adminRole(): boolean {
     return localStorage.getItem('isAdmin') === 'true';
   }
 
@@ -99,6 +106,10 @@ export class AuthService {
 
     this.isAuthenticated = true;
     this.authStatus.next(true);
+
+    if (authInformation.isAdmin === 'true') {
+      this.adminStatus.next(true);
+    }
 }
 
   getToken() {
@@ -112,6 +123,10 @@ export class AuthService {
   // live event - user is auth or not
   getAuthState() {
     return this.authStatus.asObservable();
+  }
+
+  getisAdminState() {
+    return this.adminStatus.asObservable();
   }
 
   getUserId() {
@@ -128,6 +143,7 @@ export class AuthService {
   private clearAuthData() {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
+    localStorage.removeItem('isAdmin');
   }
 
   private getAuthData() {

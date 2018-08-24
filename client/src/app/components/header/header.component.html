@@ -1,15 +1,18 @@
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-    <h5 class="my-0 mr-md-auto font-weight-normal">PROMOTION</h5>
+    <a [routerLink]="['/']" class="navbar-brand my-0 mr-md-auto font-weight-normal" href="#">
+      <img src="../../../assets/logo.png" width="70" height="40" alt="">
+    </a>
     <nav class="my-2 my-md-0 mr-md-3">
-      <!-- <a [routerLink]="['/']" class="p-2 text-dark" href="#">Home</a> -->
+      <a [routerLink]="['/']" class="p-2 text-dark" href="#">Home</a>
       <a [routerLink]="['/promotions']" class="p-2 text-dark" href="#">Promotions</a>
     </nav>
     <a *ngIf="!isAuth" [routerLink]="['/login']" class="btn btn-outline-primary" href="#">Login</a>
     <a *ngIf="!isAuth" [routerLink]="['/register']" class="btn btn-outline-primary" href="#">Register</a>
-      <button *ngIf="isAuth" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-         My stuff
+      <button *ngIf="isAuth" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+        <i class="fas fa-user"></i>
       </button>
       <div *ngIf="isAuth" class="dropdown-menu">
+        <a  *ngIf="isAdmin" [routerLink]="['/dashboard']" class="dropdown-item">Dashboard</a>
         <a [routerLink]="['/profile']" class="dropdown-item">Profile</a>
         <a [routerLink]="['/add-promotion']" class="dropdown-item" >Add promotion</a>
         <a (click)="logout()" class="dropdown-item">Logout</a>

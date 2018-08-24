@@ -34,6 +34,8 @@ import { UserProfileComponent } from './components/authentication/user-profile/u
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { SearchPipe } from './components/promotions/search.pipe';
+import { MostLikesPipe } from './core/pipes/most-likes.pipe';
+import { MostCommentsPipe } from './core/pipes/most-comments.pipe';
 
 
 
@@ -51,7 +53,9 @@ import { SearchPipe } from './components/promotions/search.pipe';
     EditPromotionComponent,
     UserProfileComponent,
     DashboardComponent,
-    SearchPipe
+    SearchPipe,
+    MostLikesPipe,
+    MostCommentsPipe
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,7 @@ import {
     canActivate(route: ActivatedRouteSnapshot,
       state: RouterStateSnapshot
     ): boolean | Observable<boolean> | Promise<boolean> {
-      const isAdmin = this.authService.userRole();
+      const isAdmin = this.authService.adminRole();
         console.log(isAdmin);
       if (!isAdmin) {
         this.router.navigate(['/']);

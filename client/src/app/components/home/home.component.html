@@ -1,21 +1,66 @@
-<!-- 
-<div class="row">
-    <div class="col-md-4" *ngFor="let item of promotions">
-      <div class="card mb-4 box-shadow">
-        <img class="card-img-top" src="../../../assets/promo.png" alt="Card image cap">
-        <div class="card-body">
-          <p class="card-text">{{item.title}}</p>
-          <p class="card-text">{{item.content}}</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-              <button *ngIf="isAuth && item.creator === userId" (click)="delete(item._id)" type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
-            </div>
-            <small class="text-muted">9 mins</small>
+<h2>Most liked items</h2>
+<hr>
+<br>
+<div class="row" *ngIf="promotions">
+  <div class="col-md-4" *ngFor="let item of promotions | mostLikes">
+    <div class="card mb-4 box-shadow">
+      <img class="card-img-top" src="{{item.image}}" alt="Card image cap">
+      <hr>
+      <div class="card-body">
+        <p class="card-text text-center">{{item.title}}</p>
+        <p class="card-text">{{item.content}}</p>
+        <p class="card-text font-weight-bold">Price: {{item.price}}</p>
+        Author: <a class="card-text font-weight-bold" [routerLink]="['/user-profile', item.creatorName]">{{item.creatorName}}</a>
+        <hr>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button [routerLink]="['/promotion-details', item._id]" type="button" class="btn btn-sm btn-outline-secondary">View</button>
           </div>
+          <div class="dropdown">
+              <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+                  Likes: {{item.likes}}
+              </button>
+              <div class="dropdown-menu" >
+                <a [routerLink]="['/user-profile', user]" *ngFor="let user of item.likedBy" class="dropdown-item" href="#">{{user}}</a>
+              </div>
+            </div>
+          <small class="text-muted">Comments: {{item.comments.length}}</small>
+          
         </div>
       </div>
     </div>
-  </div> -->
-
-  <h1>Homepage</h1>
+  </div>
+</div>
+<h2>Most commented items</h2>
+<hr>
+<br>
+<div class="row" *ngIf="promotions">
+  <div class="col-md-4" *ngFor="let item of promotions | mostComments">
+    <div class="card mb-4 box-shadow">
+      <img class="card-img-top" src="{{item.image}}" alt="Card image cap">
+      <hr>
+      <div class="card-body">
+        <p class="card-text text-center font-weight-bold">{{item.title}}</p>
+        <p class="card-text">{{item.content}}</p>
+        <p class="card-text font-weight-bold">Price: {{item.price}}</p>
+        <p class="card-text font-weight-bold">Author: {{item.creatorName}}</p>
+        <hr>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button [routerLink]="['/promotion-details', item._id]" type="button" class="btn btn-sm btn-outline-secondary">View</button>
+          </div>
+          <div class="dropdown">
+              <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+                  Likes: {{item.likes}}
+              </button>
+              <div class="dropdown-menu" >
+                <a [routerLink]="['/user-profile', user]" *ngFor="let user of item.likedBy" class="dropdown-item" href="#">{{user}}</a>
+              </div>
+            </div>
+          <small class="text-muted">Comments: {{item.comments.length}}</small>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
