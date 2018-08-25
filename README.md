@@ -7,11 +7,34 @@ data binding, dependency injection, observables, handling forms (reactive),
 interceptors, router, guards to block access to certain routes, custom pipes and directives.
 
 <h3>Technologies</h3>
-Angular
-Node.js
-Express
-MongoDB
+Angular<br>
+Node.js<br>
+Express<br>
+MongoDB<br>
 
+<h3>Installation</h3>
+Book Store requires
+
+MongoDB v3.6+
+NodeJS v8+
+To start the database (port: 27017): Install MongoDB, open new cmd window (in project root) and run
+
+$ cd server
+$ start-mongodb
+To add initial seeding: (do this step once only the first time you start the app) After you start MondoDB open new cmd window (in project root) and run
+
+$ cd server
+$ seedBooks
+To start the server (port: 3001): open new cmd window (in project root) and run
+
+$ cd server
+$ npm install (if you havent already installed the dependencies)
+$ npm start
+To start the client (port: 4200): open new cmd window (in project root) and run
+
+$ cd client
+$ npm install (if you havent already installed the dependencies)
+$ ng serve
 
 
 <strong>Features</strong>
