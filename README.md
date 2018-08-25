@@ -38,8 +38,9 @@ $ ng serve
 
 
 <strong>Features</strong>
-Not authenticated users can:
-<br>
+
+<strong>Not authenticated users can:</strong>
+
 Login, Register
 View all promotions.
 View promotion details.
@@ -50,7 +51,8 @@ Sort the promotion by criteria.
 Chat with other users in chat rooms
 
 
-Authenticated users can:
+<strong>Authenticated users can:</strong>
+
 Like current promotion.
 Comment current promotion.
 Send message to other users.
@@ -58,6 +60,7 @@ View ther message from other users.
 View their promotion.
 Edit, Delete, Create promotion.
 
-<strong>Admin</strong>can: 
+<strong>Admin can:</strong>
+
 Delete users.
 Create new admin user.
