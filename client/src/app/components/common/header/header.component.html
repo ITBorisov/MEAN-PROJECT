@@ -3,8 +3,9 @@
       <img src="../../../../assets/promo.png" width="80" height="50" alt="">
     </a>
     <nav class="my-2 my-md-0 mr-md-3">
-      <a [routerLink]="['/']" class="p-2 text-dark">Home</a>
-      <a [routerLink]="['/promotion/all']" class="p-2 text-dark">Promotions</a>
+      <a [routerLink]="['/']" class="p-2 text-dark"><i class="fas fa-home"></i> Home</a>
+      <a [routerLink]="['/promotion/all']" class="p-2 text-dark"><i class="fas fa-percent"></i> Promotions</a>
+      <a [routerLink]="['/chat']" class="p-2 text-dark"><i class="fas fa-comments"></i> Chat</a>
     </nav>
     <a *ngIf="!isAuth" [routerLink]="['/user/login']" class="btn btn-outline-danger">Login</a>
     <a *ngIf="!isAuth" [routerLink]="['/user/register']" class="btn btn-outline-danger">Register</a>

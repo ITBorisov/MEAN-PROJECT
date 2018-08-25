@@ -6,7 +6,9 @@
 h2{
     text-align: center;
 }
-
+.badge:hover{
+  cursor: pointer;
+}
 .user-l {
     padding-right: 6px;
   }

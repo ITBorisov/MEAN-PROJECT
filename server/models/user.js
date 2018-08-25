@@ -7,7 +7,13 @@ const userSchema = mongoose.Schema({
   firstName: {type: String},
   lastName: {type: String},
   email: {type: String},
-  isAdmin: { type: Boolean, default: false}
+  isAdmin: { type: Boolean, default: false},
+  messages: [{
+    message: { type: String},
+    author: { type: String},
+    createdAt: {type: Date, default: Date.now()}
+  }
+]
 });
 
 userSchema.plugin(uniqueValidator);

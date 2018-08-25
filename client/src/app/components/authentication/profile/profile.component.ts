@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { PromotionsService } from '../../promotions/promotions.service';
 import { Subscription } from 'rxjs';
@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   private isAuth = false;
   private authListenerSubs: Subscription;
   promotions;
@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit {
 
     this.authService.getProfile().subscribe(response => {
       this.user = response;
+      console.log(this.user);
     });
 
     this.fetchPromotions();
@@ -51,6 +52,10 @@ export class ProfileComponent implements OnInit {
     this.promotionService.getMyPromotions().subscribe(response => {
       this.promotions = response.promotions;
     });
+  }
+
+  ngOnDestroy() {
+    this.authListenerSubs.unsubscribe();
   }
 
 }

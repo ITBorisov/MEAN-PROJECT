@@ -9,11 +9,13 @@ import { AnonymousGuard } from './core/guards/anonymous.guard';
 // Components
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
+    { path: 'chat', component: ChatComponent},
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard, AdminGuard]},
     { path: 'promotion', loadChildren: './components/promotions/promotion.module#PromotionModule'},
     { path: 'user', loadChildren: './components/authentication/auth.module#AuthModule'}

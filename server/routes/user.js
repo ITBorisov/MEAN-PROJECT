@@ -97,7 +97,8 @@ router.get('/profile', checkAuth, (req, res) => {
         firstName: result.firstName,
         lastName: result.lastName,
         email: result.email,
-        isAdmin: result.isAdmin
+        isAdmin: result.isAdmin,
+        messages: result.messages
       });
     })
     .catch(err => {
@@ -105,6 +106,41 @@ router.get('/profile', checkAuth, (req, res) => {
         message: "Not found"
       });
     })
+})
+
+router.post('/messages', checkAuth, (req, res) => {
+
+  if (!req.body.message) {
+      res.json({ success: false, message: 'No message provided' })
+  }
+
+  console.log(req.body.message);
+  console.log(req.body.username);
+  User.findOne({ username: req.body.username })
+      .then(user => {
+          if (!user) {
+              return res.json({ success: false, message: 'User not found' })
+          } else {
+            user.messages.push({
+              message: req.body.message,
+              author: req.userData.username
+            })
+            user.save()
+              .then(result => {
+                  res.status(201).json({
+                      success: true,
+                      message: 'Your message is send',
+                  })
+              })
+              .catch(err => {
+                  res.json({
+                      success: false,
+                      message: 'Your message is not send',
+                  })
+              })
+          }
+      })
+
 })
 
 router.put('/makeAdmin/:id', checkAuth, (req, res) => {
@@ -147,22 +183,6 @@ router.put('/makeAdmin/:id', checkAuth, (req, res) => {
           });
         }
     })
-
-
-  // Promotion.updateOne({ _id: req.params.id, creator: req.userData.userId }, promotion)
-  //   .then(result => {
-  //     if (result.n > 0) {
-  //       res.status(200).json({ message: "Update successful!" });
-  //     } else {
-  //       res.status(401).json({ message: "Not authorized!" });
-  //     }
-  //   })
-  //   .catch(error => {
-  //     res.status(500).json({
-  //       message: "Couldn't udpate promotion!"
-  //     });
-  //   });
-
 })
 
 router.delete('/delete/:id', checkAuth, (req, res) => {

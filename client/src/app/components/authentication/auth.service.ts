@@ -81,6 +81,14 @@ export class AuthService {
     return this.http.get(BACKEND_URL + '/user/public-profile/' + id);
   }
 
+  sendMessage(message, username) {
+    const data = {
+      message: message,
+      username: username
+    };
+    return this.http.post<{success: boolean, message: string}>(BACKEND_URL + '/user/messages', data);
+  }
+
   logout() {
     this.token = null;
     this.userId = null;

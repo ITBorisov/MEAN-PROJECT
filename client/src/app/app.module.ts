@@ -21,6 +21,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 // Pipes
 import { MostLikesPipe } from './core/pipes/most-likes.pipe';
 import { MostCommentsPipe } from './core/pipes/most-comments.pipe';
+import { ChatComponent } from './components/chat/chat.component';
+import { ComparePasswordDirective } from './core/directives/compare-password.directive';
 
 
 @NgModule({
@@ -30,6 +32,8 @@ import { MostCommentsPipe } from './core/pipes/most-comments.pipe';
     DashboardComponent,
     MostLikesPipe,
     MostCommentsPipe,
+    ChatComponent,
+    ComparePasswordDirective,
   ],
   imports: [
     BrowserModule,
