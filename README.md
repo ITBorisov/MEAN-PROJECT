@@ -11,6 +11,7 @@ Angular<br>
 Node.js<br>
 Express<br>
 MongoDB<br>
+Socket.io<br>
 
 <h3>Installation</h3>
 PROMOBG requires
@@ -55,8 +56,8 @@ Chat with other users in chat rooms
 
 Like current promotion.
 Comment current promotion.
-Send message to other users.
-View ther message from other users.
+Send messages to other users.
+View ther messages from other users.
 View their promotion.
 Edit, Delete, Create promotion.
 
