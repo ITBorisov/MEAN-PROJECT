@@ -29,7 +29,11 @@
 </div>
 <hr>
 <div class="row">
-  <div class="col-md-4" *ngFor="let item of promotions | search:search">
+  <div class="col-md-4" *ngFor="let item of promotions | search:search | paginate: {
+    id: 'allPromotions',
+    itemsPerPage: pageSize,
+    currentPage: currentPage
+  }">
     <div class="card mb-4 box-shadow">
       <img class="card-img-top" src="{{item.image}}" alt="Card image cap">
       <hr>
@@ -58,5 +62,19 @@
       </div>
     </div>
   </div>
+</div>
+<div id="my-pagination">
+  <pagination-controls
+    id="allPromotions" 
+    (pageChange)="pageChanged($event)" 
+    maxSize="9"
+    directionLinks="true"
+    autoHide="true"
+    previousLabel="Previous"
+    nextLabel="Next"
+    screenReaderPaginationLabel="Pagination"
+    screenReaderPageaLabel="page"
+    screenReaderCurrentLabel="You're on page"
+    ></pagination-controls>
 </div>
 </div>

@@ -11,6 +11,8 @@ import { Subscription } from 'rxjs';
 })
 export class ListPromotionComponent implements OnInit {
   promotions;
+  pageSize = 6;
+  currentPage = 1;
   private isAuth = false;
   private authListenerSubs: Subscription;
 
@@ -74,6 +76,11 @@ export class ListPromotionComponent implements OnInit {
       return 1;
     }
     return 0;
+  }
+
+
+  pageChanged(newPage: number): void {
+    this.currentPage = newPage;
   }
 
 }
