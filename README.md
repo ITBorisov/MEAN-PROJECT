@@ -2,6 +2,7 @@
 Features
 
 Not authenticated users can:
+<br>
 Login, Register
 View all promotions.
 View promotion details.
