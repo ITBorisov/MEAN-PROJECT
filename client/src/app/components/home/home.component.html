@@ -19,18 +19,18 @@
         <p class="card-text text-center">{{item.title}}</p>
         <p class="card-text">{{item.content}}</p>
         <p class="card-text font-weight-bold">Price: {{item.price}}</p>
-        Author: <a class="card-text font-weight-bold" [routerLink]="['/user-profile', item.creatorName]">{{item.creatorName}}</a>
+        Author: <a class="card-text font-weight-bold" [routerLink]="['/user/public-profile', item.creatorName]">{{item.creatorName}}</a>
         <hr>
         <div class="d-flex justify-content-between align-items-center">
           <div class="btn-group">
-            <button [routerLink]="['/promotion-details', item._id]" type="button" class="btn btn-sm btn-outline-secondary">View</button>
+            <button [routerLink]="['/promotion/details', item._id]" type="button" class="btn btn-sm btn-outline-secondary">View</button>
           </div>
           <div class="dropdown">
               <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
                   Likes: {{item.likes}}
               </button>
               <div class="dropdown-menu" >
-                <a [routerLink]="['/user-profile', user]" *ngFor="let user of item.likedBy" class="dropdown-item" href="#">{{user}}</a>
+                <a [routerLink]="['/user/public-profile', user]" *ngFor="let user of item.likedBy" class="dropdown-item" href="#">{{user}}</a>
               </div>
             </div>
           <small class="text-muted font-weight-bold">Comments: {{item.comments.length}}</small>

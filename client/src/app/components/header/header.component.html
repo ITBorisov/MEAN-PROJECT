@@ -4,7 +4,7 @@
     </a>
     <nav class="my-2 my-md-0 mr-md-3">
       <a [routerLink]="['/']" class="p-2 text-dark">Home</a>
-      <a [routerLink]="['/promotions']" class="p-2 text-dark">Promotions</a>
+      <a [routerLink]="['/promotion/all']" class="p-2 text-dark">Promotions</a>
     </nav>
     <a *ngIf="!isAuth" [routerLink]="['/user/login']" class="btn btn-outline-danger">Login</a>
     <a *ngIf="!isAuth" [routerLink]="['/user/register']" class="btn btn-outline-danger">Register</a>
@@ -13,8 +13,8 @@
       </button>
       <div *ngIf="isAuth" class="dropdown-menu">
         <a  *ngIf="isAdmin" [routerLink]="['/dashboard']" class="dropdown-item">Dashboard</a>
-        <a [routerLink]="['/profile']" class="dropdown-item">Profile</a>
-        <a [routerLink]="['/add-promotion']" class="dropdown-item" >Add promotion</a>
+        <a [routerLink]="['/user/profile']" class="dropdown-item">Profile</a>
+        <a [routerLink]="['/promotion/add']" class="dropdown-item" >Add promotion</a>
         <a (click)="logout()" class="dropdown-item">Logout</a>
       </div>
     

@@ -25,7 +25,7 @@ export class PromotionsService {
 
     this.http.post<{message: string}>(BACKEND_URL + '/promotions', promotion).subscribe((response) => {
       this.toastr.success('Нова промоция');
-      this.router.navigate(['/profile']);
+      this.router.navigate(['/user/profile']);
     });
   }
 
@@ -41,7 +41,7 @@ export class PromotionsService {
     this.http.put(BACKEND_URL + '/promotions/' + id, data)
     .subscribe(response => {
       this.toastr.success('Successful edit');
-      this.router.navigate(['/profile']);
+      this.router.navigate(['/user/profile']);
     });
   }
 

@@ -6,9 +6,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
-    declarations: [LoginComponent, RegisterComponent],
+    declarations: [
+        LoginComponent,
+        RegisterComponent,
+        ProfileComponent,
+        UserProfileComponent
+    ],
     imports: [
         CommonModule,
         AuthRoutingModule,
