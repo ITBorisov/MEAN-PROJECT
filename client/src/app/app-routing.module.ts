@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 
 // Guards
 import { AuthGuard } from './components/authentication/auth.guard';
@@ -8,11 +8,6 @@ import { AnonymousGuard } from './core/guards/anonymous.guard';
 
 // Components
 import { HomeComponent } from './components/home/home.component';
-// import { AddPromotionComponent } from './components/promotions/add-promotion/add-promotion.component';
-// import { ListPromotionComponent } from './components/promotions/list-promotion/list-promotion.component';
-// import { DetailsPromotionComponent } from './components/promotions/details-promotion/details-promotion.component';
-// import { EditPromotionComponent } from './components/promotions/edit-promotion/edit-promotion.component';
-import { UserProfileComponent } from './components/authentication/user-profile/user-profile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
@@ -24,8 +19,12 @@ const routes: Routes = [
     { path: 'user', loadChildren: './components/authentication/auth.module#AuthModule'}
 ];
 
+
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(
+        routes,
+        { preloadingStrategy: PreloadAllModules }
+    )],
     exports: [RouterModule],
     providers: [AuthGuard, AdminGuard, AnonymousGuard]
 })
