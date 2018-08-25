@@ -28,7 +28,7 @@ export class AuthService {
   createUser(data) {
     this.http.post<{success: boolean, message: string}>(BACKEND_URL + '/user/register', data).subscribe(response => {
       this.toastr.success(response.message);
-      this.router.navigate(['/login']);
+      this.router.navigate(['/user/login']);
     }, error => {
       this.toastr.error(error.error.message);
     });

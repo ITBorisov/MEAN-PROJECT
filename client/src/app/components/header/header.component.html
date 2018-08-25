@@ -6,8 +6,8 @@
       <a [routerLink]="['/']" class="p-2 text-dark">Home</a>
       <a [routerLink]="['/promotions']" class="p-2 text-dark">Promotions</a>
     </nav>
-    <a *ngIf="!isAuth" [routerLink]="['/login']" class="btn btn-outline-danger">Login</a>
-    <a *ngIf="!isAuth" [routerLink]="['/register']" class="btn btn-outline-danger">Register</a>
+    <a *ngIf="!isAuth" [routerLink]="['/user/login']" class="btn btn-outline-danger">Login</a>
+    <a *ngIf="!isAuth" [routerLink]="['/user/register']" class="btn btn-outline-danger">Register</a>
       <button *ngIf="isAuth" type="button" class="btn btn-sm btn-outline-danger dropdown-toggle" data-toggle="dropdown">
         <i class="fas fa-user"></i>
       </button>

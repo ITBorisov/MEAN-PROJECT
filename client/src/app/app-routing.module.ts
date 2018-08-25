@@ -29,9 +29,8 @@ const routes: Routes = [
     { path: 'promotion-details/:id', component: DetailsPromotionComponent},
     { path: 'user-profile/:id', component: UserProfileComponent},
     { path: 'add-promotion', component: AddPromotionComponent, canActivate: [AuthGuard]},
-    { path: 'login', component: LoginComponent, canActivate: [AnonymousGuard]},
-    { path: 'register', component: RegisterComponent, canActivate: [AnonymousGuard]},
-    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]}
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+    { path: 'user', loadChildren: './components/authentication/auth.module#AuthModule'}
 ];
 
 @NgModule({

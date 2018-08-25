@@ -28,8 +28,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AddPromotionComponent } from './components/promotions/add-promotion/add-promotion.component';
 import { ListPromotionComponent } from './components/promotions/list-promotion/list-promotion.component';
-import { LoginComponent } from './components/authentication/login/login.component';
-import { RegisterComponent } from './components/authentication/register/register.component';
+
 import { ProfileComponent } from './components/authentication/profile/profile.component';
 import { DetailsPromotionComponent } from './components/promotions/details-promotion/details-promotion.component';
 import { EditPromotionComponent } from './components/promotions/edit-promotion/edit-promotion.component';
@@ -52,8 +51,6 @@ import { MostCommentsPipe } from './core/pipes/most-comments.pipe';
     HeaderComponent,
     ListPromotionComponent,
     HomeComponent,
-    LoginComponent,
-    RegisterComponent,
     ProfileComponent,
     DetailsPromotionComponent,
     EditPromotionComponent,
