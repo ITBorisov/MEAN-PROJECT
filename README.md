@@ -13,7 +13,6 @@ Chat with other users in chat rooms
 
 
 Authenticated users can:
-+Not authenticated
 Like current promotion.
 Comment current promotion.
 Send message to other users.
@@ -22,6 +21,5 @@ View their promotion.
 Edit, Delete, Create promotion.
 
 Admin users
-+Authentcated
 Delete users.
 Create new admin user.
