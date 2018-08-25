@@ -13,7 +13,7 @@ Express<br>
 MongoDB<br>
 
 <h3>Installation</h3>
-Book Store requires
+PROMOBG requires
 
 MongoDB v3.6+
 NodeJS v8+
