@@ -1,6 +1,25 @@
 # MEAN-PROJECT
-Features
+<h1>PROMOBG APP / ANGULAR 6</h1>
 
+<h3>Description</h3>
+PromoBG app is single page application made at SoftUni academy for the Angular fundamentals course.In the app, users can post ads, comment and like other users ads.They can send messages to other users and chat with them in a special chat room.
+
+In the project have been demonstrated use of programming concepts, specific to the Angular framework: components, decorators,
+data binding, dependency injection, observables, handling forms (reactive),
+interceptors, router, guards to block access to certain routes, custom pipes and directives.
+
+<h3>Technologies</h3>
+Angular
+
+Node.js
+
+Express
+
+MongoDB
+
+
+
+<strong>Features</strong>
 Not authenticated users can:
 <br>
 Login, Register
@@ -21,6 +40,6 @@ View ther message from other users.
 View their promotion.
 Edit, Delete, Create promotion.
 
-Admin users
+<strong>Admin</strong>can: 
 Delete users.
 Create new admin user.
