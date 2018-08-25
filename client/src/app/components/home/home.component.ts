@@ -29,7 +29,6 @@ export class HomeComponent implements OnInit {
 
     this.promotionService.getAllPromotions().subscribe(data => {
       this.promotions = data.promotions;
-      console.log(this.promotions);
     });
   }
 

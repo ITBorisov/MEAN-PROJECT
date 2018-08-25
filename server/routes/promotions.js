@@ -11,8 +11,6 @@ const checkAuth = require('../middleware/check-auth');
 router.post('', checkAuth, (req, res, next) => {
     const body = req.body;
 
-    console.log(req.user);
-
     const promotion = new Promotion({
         title: body.title,
         content: body.content,
@@ -44,9 +42,6 @@ router.get('', (req, res, next) => {
 })
 
 router.get('/mypromotion', checkAuth, (req, res) => {
-    console.log('aaaaaaaaaaaaa');
-    console.log(req.userData.userId);
-
     Promotion.find({ creator: req.userData.userId })
         .then(promotions => {
             res.status(200).json({
@@ -98,7 +93,6 @@ router.post('/comment', checkAuth, (req, res) => {
 })
 
 router.put('/like', checkAuth, (req, res) => {
-    console.log('like');
     if (!req.body.id) {
         res.json({ success: false, message: 'No id provided' })
     }
@@ -151,7 +145,7 @@ router.get('/:id', (req, res) => {
             res.status(200).json({ promotion })
         })
         .catch(err => {
-            console.log('Greshka')
+            console.log(err)
         })
 })
 
@@ -185,7 +179,6 @@ router.put('/:id', checkAuth, (req, res) => {
 router.delete('/:id', checkAuth, (req, res, next) => {
     Promotion.deleteOne({ _id: req.params.id, creator: req.userData.userId })
         .then(result => {
-            console.log(result);
             if (result.n > 0) {
                 res.status(200).json({ success: true, message: "Deletion successful!" });
             } else {

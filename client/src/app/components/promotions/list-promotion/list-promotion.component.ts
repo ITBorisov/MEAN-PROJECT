@@ -42,17 +42,17 @@ export class ListPromotionComponent implements OnInit {
   fetchPromotion() {
     this.promotionService.getAllPromotions().subscribe(data => {
       this.promotions = data.promotions;
-      console.log(this.promotions);
+
     });
   }
 
   sortByLikes() {
-    console.log('likes');
+
     this.promotions = this.promotions.sort(this.compare);
   }
 
   sortByComments() {
-    console.log('comments');
+
     this.promotions = this.promotions.sort(this.compareByComments);
   }
 

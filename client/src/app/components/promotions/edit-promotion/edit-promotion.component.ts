@@ -22,7 +22,7 @@ export class EditPromotionComponent implements OnInit {
     this.promotionId = this.route.snapshot.paramMap.get('id');
     this.promotionService.getPromotion(this.promotionId).subscribe(response => {
       this.promotion = response.promotion;
-      console.log(this.promotion);
+
       this.form.setValue({
         title: this.promotion.title,
         content: this.promotion.content,

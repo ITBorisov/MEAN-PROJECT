@@ -108,7 +108,7 @@ router.get('/profile', checkAuth, (req, res) => {
 })
 
 router.put('/makeAdmin/:id', checkAuth, (req, res) => {
-  console.log('vliza');
+
   if (req.userData.isAdmin === false) {
     res.status(403).json({
       success: false,
@@ -118,7 +118,7 @@ router.put('/makeAdmin/:id', checkAuth, (req, res) => {
 
   User.findOne({ _id: req.params.id })
     .then(user => {
-      console.log(user);
+   
         if(!user){
           res.status(404).json({success: false, message: 'There is not user'})
         }else{
@@ -175,7 +175,7 @@ router.delete('/delete/:id', checkAuth, (req, res) => {
 
   User.deleteOne({ _id: req.params.id })
     .then(result => {
-      console.log(result);
+    
       if (result.n > 0) {
         res.status(200).json({ success: true, message: "Deletion successful!" });
       } else {
@@ -190,8 +190,6 @@ router.delete('/delete/:id', checkAuth, (req, res) => {
 })
 
 router.get('/public-profile/:id', (req, res) => {
-
-  console.log(req.params.id);
 
   User.findOne({ username: req.params.id })
     .then(result => {

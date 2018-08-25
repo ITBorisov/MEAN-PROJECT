@@ -33,7 +33,7 @@
                 <a [routerLink]="['/user-profile', user]" *ngFor="let user of item.likedBy" class="dropdown-item" href="#">{{user}}</a>
               </div>
             </div>
-          <small class="text-muted">Comments: {{item.comments.length}}</small>
+          <small class="text-muted font-weight-bold">Comments: {{item.comments.length}}</small>
           
         </div>
       </div>
@@ -66,7 +66,7 @@
                 <a [routerLink]="['/user-profile', user]" *ngFor="let user of item.likedBy" class="dropdown-item" href="#">{{user}}</a>
               </div>
             </div>
-          <small class="text-muted">Comments: {{item.comments.length}}</small>
+            <small class="text-muted font-weight-bold">Comments: {{item.comments.length}}</small>
           
         </div>
       </div>

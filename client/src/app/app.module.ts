@@ -17,9 +17,12 @@ import {
   MatButtonModule,
   MatToolbarModule } from '@angular/material';
 
-import { PromotionsService } from './components/promotions/promotions.service';
-import { AuthInterceptor } from './core/interseptors/auth-interceptors';
 
+// Interceptors
+import { AuthInterceptor } from './core/interceptors/auth-interceptors';
+import { ErrorInterceptor } from './core/interceptors/error-interceptors';
+
+// Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -32,10 +35,13 @@ import { DetailsPromotionComponent } from './components/promotions/details-promo
 import { EditPromotionComponent } from './components/promotions/edit-promotion/edit-promotion.component';
 import { UserProfileComponent } from './components/authentication/user-profile/user-profile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { FooterComponent } from './components/common/footer/footer.component';
 
+// Pipes
 import { SearchPipe } from './components/promotions/search.pipe';
 import { MostLikesPipe } from './core/pipes/most-likes.pipe';
 import { MostCommentsPipe } from './core/pipes/most-comments.pipe';
+
 
 
 
@@ -55,7 +61,8 @@ import { MostCommentsPipe } from './core/pipes/most-comments.pipe';
     DashboardComponent,
     SearchPipe,
     MostLikesPipe,
-    MostCommentsPipe
+    MostCommentsPipe,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +83,8 @@ import { MostCommentsPipe } from './core/pipes/most-comments.pipe';
     })
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

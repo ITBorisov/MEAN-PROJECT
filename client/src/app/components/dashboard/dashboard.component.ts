@@ -44,7 +44,6 @@ export class DashboardComponent implements OnInit {
   fetchUsers() {
     this.authService.getUsers().subscribe(response => {
       this.users = response.users;
-      console.log(this.users);
     });
   }
 

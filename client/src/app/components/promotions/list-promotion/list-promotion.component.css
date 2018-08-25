@@ -32,6 +32,10 @@
 .btn-group{
 }
 
+.card-img-top{
+  width: 100%;
+  height: 260px;
+}
 p{
   line-height: 1 !important;
 }

@@ -46,7 +46,7 @@
   <form *ngIf="isAuth" [formGroup]="commentForm" (submit)="addComment()">
     <div class="col-md-8">
       <div class="form-group">
-        <label for="comment" class="text-white">Comment:</label>
+        <label for="comment" class="text-white font-weight-bold">Comment:</label>
         <textarea formControlName="comment" class="form-control" rows="5" cols="50" id="comment"></textarea>
       </div>
     </div>

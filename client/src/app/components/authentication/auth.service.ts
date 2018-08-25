@@ -86,8 +86,10 @@ export class AuthService {
     this.userId = null;
     this.isAdmin = null;
     this.isAuthenticated = false;
+
     this.authStatus.next(false);
     this.adminStatus.next(false);
+
     this.clearAuthData();
     this.toastr.success('Successful sign out');
     this.router.navigate(['/']);

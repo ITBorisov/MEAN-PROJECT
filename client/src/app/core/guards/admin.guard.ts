@@ -18,9 +18,10 @@ import {
       state: RouterStateSnapshot
     ): boolean | Observable<boolean> | Promise<boolean> {
       const isAdmin = this.authService.adminRole();
-        console.log(isAdmin);
+
       if (!isAdmin) {
         this.router.navigate(['/']);
+        return false;
       }
       return isAdmin;
     }

@@ -62,7 +62,6 @@ export class DetailsPromotionComponent implements OnInit {
  fetchPromotion(id: string) {
   this.promotionService.getPromotion(this.promotionId).subscribe(response => {
     this.promotion = response.promotion;
-    console.log(this.promotion);
   });
  }
 
