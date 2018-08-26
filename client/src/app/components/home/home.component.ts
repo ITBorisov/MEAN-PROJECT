@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ToastrService } from 'ngx-toastr';
 import { PromotionsService } from '../promotions/promotions.service';
 import { AuthService } from '../authentication/auth.service';
 import { Subscription } from 'rxjs';
@@ -17,7 +17,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private promotionService: PromotionsService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.isAuth = this.authService.getIsAuth();
@@ -26,12 +27,25 @@ export class HomeComponent implements OnInit {
     });
     this.userId = this.authService.getUserId();
 
+    this.fetchPromotion();
+  }
 
+  like(id) {
+    this.promotionService.like(id).subscribe(response => {
+      if (response.success) {
+        this.fetchPromotion();
+        this.toastr.success(response.message);
+      } else {
+        this.toastr.error(response.message);
+      }
+    });
+  }
+
+  fetchPromotion() {
     this.promotionService.getAllPromotions().subscribe(data => {
       this.promotions = data.promotions;
     });
   }
-
   delete(itemId) {
     this.promotionService.deletePromotion(itemId);
   }
